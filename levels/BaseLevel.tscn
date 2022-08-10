@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="BaseLevel" type="Node2D"]
+z_index = -1000
+
+[node name="StartingBallPosition" type="Position2D" parent="."]
+position = Vector2( 500, 300 )
+
+[node name="StartingPaddlePosition" type="Position2D" parent="."]
+position = Vector2( 500, 700 )

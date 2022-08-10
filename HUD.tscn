@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="CurrentScore" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_top = 10.0
+margin_right = 20.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="InfoMessage" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -67.5
+margin_top = -15.5
+margin_right = 67.5
+margin_bottom = 15.5
+text = "Hello!
+Press \"Enter\" to play!"
+
+[node name="Highscore" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = 10.0
+margin_bottom = 14.0
+text = "0"
