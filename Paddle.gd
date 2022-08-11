@@ -21,6 +21,6 @@ func _process(delta):
 	position.x = clamp(position.x + horizontal_movement, screen_limit_left, screen_limit_right)
 	
 
-func start(pos):
+func reset(pos):
 	position = pos
 	show()
