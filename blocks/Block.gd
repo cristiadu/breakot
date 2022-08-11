@@ -7,6 +7,7 @@ signal hit
 
 func _ready():
 	self.connect("hit", self, "on_Block_hit")
+	add_to_group("block")
 	# apply color here
 	
 	
