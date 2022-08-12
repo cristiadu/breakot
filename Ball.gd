@@ -13,12 +13,10 @@ func _integrate_forces(state):
 	if reset_ball:
 		# Cannot change positions of RigidBody2D directly
 		# it has to be through this method or through applied physical forces.
-		state.sleeping = true
 		state.transform = Transform2D(0, initial_pos)
 		reset_ball = false
 		apply_impulse(Vector2(), Vector2(1, 1).normalized() * speed)
 		show()
-		state.sleeping = false
 		
 
 func reset(pos):

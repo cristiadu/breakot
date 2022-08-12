@@ -55,5 +55,5 @@ can_sleep = false
 script = ExtResource( 4 )
 
 [node name="StartGameTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 2.5
 one_shot = true
