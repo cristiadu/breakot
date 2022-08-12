@@ -1,7 +1,10 @@
 extends CanvasLayer
 
+signal level_won
+
 var current_points = 0
 var highscore = 0
+var active_blocks_count setget set_blocks_count
 var new_highscore = false
 var initial_text = "Press ENTER to start."
 
@@ -15,8 +18,7 @@ func _ready():
 		save_highscore()
 	else:
 		load_highscore()
-		
-	$InfoMessage.text = initial_text
+	show_message(initial_text, false)
 
 
 func _on_HUD_destroy():
@@ -24,24 +26,37 @@ func _on_HUD_destroy():
 		save_highscore()
 
 
+func set_blocks_count(new_count):
+	active_blocks_count = new_count
+	if active_blocks_count == 0:
+		emit_signal("level_won")
+
+
 func reset():
 	current_points = 0
-	$InfoMessage.hide()
 	
-	var blocks = get_tree().get_nodes_in_group("block")  
+	var blocks = get_tree().get_nodes_in_group("block")
+	self.active_blocks_count = blocks.size()
 	for block in blocks:
 		block.connect("hit", self, "increase_score", [block.points])
 
 
-func show_message(message):
+func hide_title_screen():
+	$TitleScreen.visible = false
+	$TitleBackground.visible = false
+
+
+func show_message(message, disappear_after_timer = true):
 	$InfoMessage.text = message
 	$InfoMessage.show()
-	yield(get_tree().create_timer(10), "timeout")
-	$InfoMessage.hide()
+	if disappear_after_timer:
+		yield(get_tree().create_timer(2), "timeout")
+		$InfoMessage.hide()
 
 
 func increase_score(points):
 	current_points += points
+	self.active_blocks_count -= 1
 	$CurrentScore.text = str(current_points)
 	
 	if highscore < current_points:
@@ -57,7 +72,6 @@ func set_highscore(score):
 func load_highscore():
 	save.open(save_file, File.READ)
 	var save_data = save.get_var()
-	print(save_data)
 	save.close()
 	set_highscore(save_data["highscore"])
 	
