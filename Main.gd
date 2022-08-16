@@ -3,7 +3,6 @@ extends Node2D
 export var total_levels = 5
 
 var game_started = false
-var game_over = false
 var current_level_number = 1
 var current_level = null
 
@@ -17,6 +16,10 @@ func _ready():
 	if err:
 		print("Error when linking behavior of losing a level")
 		
+	err = $Ball.connect("lost_life", self, "on_life_lost")
+	if err:
+		print("Error when linking behavior of losing a life")
+		
 	err = $StartGameTimer.connect("timeout", self, "run_game")
 	if err:
 		print("Error when linking behavior of run_game timer")
@@ -25,29 +28,33 @@ func _ready():
 func _process(_delta):
 	if (not game_started) and Input.is_action_pressed("ui_accept"):
 		game_started = true
-		game_over = false
-		start_level(current_level_number)
-	if game_over and Input.is_action_pressed("ui_cancel"):
+		start_level(1)
+	if Input.is_action_pressed("ui_cancel"):
+		$Ball.sleeping = true
 		game_started = false
 		$HUD.show_title_screen()
 
 
 func on_level_won():
 	$Ball.sleeping = true
-	game_started = false
 	if current_level_number < total_levels:
 		$HUD.show_message("You Won This Level!\nLoading next one...")
 		current_level_number += 1
 		yield(get_tree().create_timer(3), "timeout")
 		start_level(current_level_number)
 	else:
-		$HUD.show_message("You Won The Game!\n:D :D :D", false)
+		$HUD.show_message("You Won The Game!\nPress ESC to go back to title screen.", false)
 
 
 func on_level_lost():
 	$Ball.sleeping = true
-	game_over = true
 	$HUD.show_message("Game Over!\nPress ESC to go back to title screen.", false)
+
+
+func on_life_lost():
+	$Ball.sleeping = true
+	$Ball.reset(current_level.get_node("StartingBallPosition").position)
+	$HUD.life_lost()
 
 
 func run_game():

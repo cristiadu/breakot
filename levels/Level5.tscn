@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/level2-bg.png" type="Texture" id=1]
+[ext_resource path="res://assets/level5-bg.png" type="Texture" id=1]
 
-[node name="Level2" type="Node2D"]
+[node name="Level5" type="Node2D"]
 z_index = -1000
 
 [node name="Background" type="TextureRect" parent="."]

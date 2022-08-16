@@ -20,10 +20,6 @@ func _ready():
 	if err:
 		print("Error when linking HUD delete behavior")
 		
-	err = get_node("../Ball").connect("lost_life", self, "on_life_lost")
-	if err:
-		print("Error when linking life lost behavior")
-	
 	if not save.file_exists(save_file):
 		save_highscore()
 	else:
@@ -36,10 +32,10 @@ func on_HUD_destroy():
 		save_highscore()
 
 
-func on_life_lost():
+func life_lost():
 	get_node("Lives/Heart" + str(lives) + "/AnimatedSprite").animation = "empty"
 	lives-=1
-	if(lives <= 0):
+	if lives == 0:
 		emit_signal("level_lost")
 
 
@@ -50,7 +46,6 @@ func set_blocks_count(new_count):
 
 
 func reset():
-	current_points = 0
 	lives = initial_lives
 	
 	var blocks = get_tree().get_nodes_in_group("block")
@@ -68,6 +63,8 @@ func hide_title_screen():
 
 
 func show_title_screen():
+	current_points = 0
+	$CurrentScore.text = str(current_points)
 	$TitleScreen.visible = true
 	$TitleBackground.visible = true
 	show_message(initial_text, false)

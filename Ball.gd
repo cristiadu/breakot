@@ -26,8 +26,8 @@ func _integrate_forces(state):
 
 func reset(pos):
 	initial_pos = pos
-	self.sleeping = false
 	reset_ball = true
+	self.sleeping = false
 
 
 func check_block_collision(body):
