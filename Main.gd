@@ -1,24 +1,53 @@
 extends Node2D
 
-signal game_over
-signal game_won
+export var total_levels = 5
 
-export var total_levels = 2
 var game_started = false
+var game_over = false
 var current_level_number = 1
 var current_level = null
 
 
-
 func _ready():
-	$HUD.connect("level_won", self, "level_won")
-	$StartGameTimer.connect("timeout", self, "run_game")
+	var err = $HUD.connect("level_won", self, "on_level_won")
+	if err:
+		print("Error when linking behavior of winning a level")
+		
+	err = $HUD.connect("level_lost", self, "on_level_lost")
+	if err:
+		print("Error when linking behavior of losing a level")
+		
+	err = $StartGameTimer.connect("timeout", self, "run_game")
+	if err:
+		print("Error when linking behavior of run_game timer")
 
 
-func _process(delta):
+func _process(_delta):
 	if (not game_started) and Input.is_action_pressed("ui_accept"):
 		game_started = true
+		game_over = false
 		start_level(current_level_number)
+	if game_over and Input.is_action_pressed("ui_cancel"):
+		game_started = false
+		$HUD.show_title_screen()
+
+
+func on_level_won():
+	$Ball.sleeping = true
+	game_started = false
+	if current_level_number < total_levels:
+		$HUD.show_message("You Won This Level!\nLoading next one...")
+		current_level_number += 1
+		yield(get_tree().create_timer(3), "timeout")
+		start_level(current_level_number)
+	else:
+		$HUD.show_message("You Won The Game!\n:D :D :D", false)
+
+
+func on_level_lost():
+	$Ball.sleeping = true
+	game_over = true
+	$HUD.show_message("Game Over!\nPress ESC to go back to title screen.", false)
 
 
 func run_game():
@@ -40,15 +69,3 @@ func start_level(level_number):
 	$HUD.hide_title_screen()
 	$HUD.show_message("Starting Game...")
 	$StartGameTimer.start()
-
-
-func level_won():
-	$Ball.sleeping = true
-	game_started = false
-	if current_level_number < total_levels:
-		$HUD.show_message("You Won This Level! Loading next one...")
-		current_level_number += 1
-		yield(get_tree().create_timer(3), "timeout")
-		start_level(current_level_number)
-	else:
-		$HUD.show_message("You Won The Game! :D :D :D", false)
