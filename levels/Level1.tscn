@@ -15,76 +15,58 @@ texture = ExtResource( 5 )
 [node name="Blocks" type="Node2D" parent="."]
 
 [node name="CrackeableGlassBlock" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 960, 176 )
-scale = Vector2( 2, 2 )
+position = Vector2( 256, 120 )
 
 [node name="CrackeableGlassBlock2" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 48, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 64, 56 )
 
 [node name="CrackeableGlassBlock4" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 144, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 192, 56 )
 
 [node name="CrackeableGlassBlock9" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 240, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 320, 56 )
 
 [node name="CrackeableGlassBlock10" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 432, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 576, 56 )
 
 [node name="CrackeableGlassBlock11" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 720, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 960, 56 )
 
 [node name="CrackeableGlassBlock12" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 912, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 896, 88 )
 
 [node name="CrackeableGlassBlock5" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 704, 176 )
-scale = Vector2( 2, 2 )
+position = Vector2( 768, 120 )
 
 [node name="CrackeableGlassBlock6" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 64, 176 )
-scale = Vector2( 2, 2 )
+position = Vector2( 128, 208 )
 
 [node name="CrackeableGlassBlock7" parent="Blocks" instance=ExtResource( 1 )]
 position = Vector2( 192, 176 )
-scale = Vector2( 2, 2 )
 
 [node name="CrackeableGlassBlock8" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 832, 176 )
-scale = Vector2( 2, 2 )
+position = Vector2( 256, 208 )
 
 [node name="CrackeableGlassBlock3" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 448, 176 )
-scale = Vector2( 2, 2 )
+position = Vector2( 640, 88 )
 
 [node name="WeakGlassBlock" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 576, 176 )
-scale = Vector2( 2, 2 )
+position = Vector2( 512, 120 )
 
 [node name="WeakGlassBlock2" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 320, 176 )
-scale = Vector2( 2, 2 )
+position = Vector2( 384, 88 )
 
 [node name="WeakGlassBlock3" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 336, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 448, 56 )
 
 [node name="WeakGlassBlock4" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 624, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 832, 56 )
 
 [node name="WeakGlassBlock6" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 816, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 128, 88 )
 
 [node name="WeakGlassBlock5" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 528, 116 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 704, 56 )
 
 [node name="StartingBallPosition" type="Position2D" parent="."]
 position = Vector2( 500, 300 )

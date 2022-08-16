@@ -1,19 +1,29 @@
 extends CanvasLayer
 
 signal level_won
+signal level_lost
 
-var current_points = 0
-var highscore = 0
-var active_blocks_count setget set_blocks_count
 var new_highscore = false
 var initial_text = "Press ENTER to start."
+var current_points = 0
+var highscore = 0
+var initial_lives = 3
+var lives = initial_lives
+var active_blocks_count setget set_blocks_count
 
 var save = File.new()
 var save_file = "user://game.save"
 
 
 func _ready():
-	self.connect("tree_exiting", self, "_on_HUD_destroy")
+	var err = self.connect("tree_exiting", self, "on_HUD_destroy")
+	if err:
+		print("Error when linking HUD delete behavior")
+		
+	err = get_node("../Ball").connect("lost_life", self, "on_life_lost")
+	if err:
+		print("Error when linking life lost behavior")
+	
 	if not save.file_exists(save_file):
 		save_highscore()
 	else:
@@ -21,9 +31,16 @@ func _ready():
 	show_message(initial_text, false)
 
 
-func _on_HUD_destroy():
+func on_HUD_destroy():
 	if new_highscore:
 		save_highscore()
+
+
+func on_life_lost():
+	get_node("Lives/Heart" + str(lives) + "/AnimatedSprite").animation = "empty"
+	lives-=1
+	if(lives <= 0):
+		emit_signal("level_lost")
 
 
 func set_blocks_count(new_count):
@@ -34,16 +51,26 @@ func set_blocks_count(new_count):
 
 func reset():
 	current_points = 0
+	lives = initial_lives
 	
 	var blocks = get_tree().get_nodes_in_group("block")
 	self.active_blocks_count = blocks.size()
 	for block in blocks:
 		block.connect("hit", self, "increase_score", [block.points])
+		
+	for heart in $Lives.get_children():
+		heart.get_node("AnimatedSprite").animation = "full"
 
 
 func hide_title_screen():
 	$TitleScreen.visible = false
 	$TitleBackground.visible = false
+
+
+func show_title_screen():
+	$TitleScreen.visible = true
+	$TitleBackground.visible = true
+	show_message(initial_text, false)
 
 
 func show_message(message, disappear_after_timer = true):

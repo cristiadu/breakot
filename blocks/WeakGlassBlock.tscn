@@ -4,10 +4,9 @@
 [ext_resource path="res://blocks/WeakGlassBlock.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 8 )
+extents = Vector2( 64, 16 )
 
 [node name="WeakGlassBlock" type="StaticBody2D" groups=["block"]]
-scale = Vector2( 1.25, 1.25 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
