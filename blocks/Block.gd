@@ -12,6 +12,7 @@ func _ready():
 	add_to_group("block")
 	apply_color()
 
+
 func apply_color():
 	var r = random.randf_range(0, 1)
 	var g = random.randf_range(0, 1)
