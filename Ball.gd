@@ -1,37 +1,38 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 signal lost_life
 
 export var speed = 300.0
-var reset_ball = false
-var initial_pos
+var ball_paused = true
+var velocity = Vector2(speed, 0).rotated(1)
+
 
 func _ready():
-	var err = self.connect("body_entered", self, "check_block_collision")
-	if err:
-		print("Error when linking block collision behavior")
-	
+	ball_paused = true
 	hide()
 
 
-func _integrate_forces(state):
-	if reset_ball:
-		# Cannot change positions of RigidBody2D directly
-		# it has to be through this method or through applied physical forces.
-		state.transform = Transform2D(0, initial_pos)
-		reset_ball = false
-		apply_impulse(Vector2(), Vector2(1, 1).normalized() * speed)
-		show()
+func _physics_process(delta):
+	if not ball_paused:
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			velocity = velocity.bounce(collision.normal)
+			on_block_collision(collision.collider)
 
 
-func reset(pos):
-	initial_pos = pos
-	reset_ball = true
-	self.sleeping = false
-
-
-func check_block_collision(body):
+func on_block_collision(body):
 	if body.is_in_group("block"):
 		body.hit()
 	elif body.name == "BottomWall":
 		emit_signal("lost_life")
+
+
+func reset(pos):
+	velocity = Vector2(speed, 0).rotated(1)
+	position = pos
+	show()
+	ball_paused = false
+
+
+func pause():
+	ball_paused = true

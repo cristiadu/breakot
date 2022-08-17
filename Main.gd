@@ -30,13 +30,15 @@ func _process(_delta):
 		game_started = true
 		start_level(1)
 	if Input.is_action_pressed("ui_cancel"):
-		$Ball.sleeping = true
 		game_started = false
+		$Ball.pause()
+		$Paddle.pause()
 		$HUD.show_title_screen()
 
 
 func on_level_won():
-	$Ball.sleeping = true
+	$Ball.pause()
+	$Paddle.pause()
 	if current_level_number < total_levels:
 		$HUD.show_message("You Won This Level!\nLoading next one...")
 		current_level_number += 1
@@ -47,12 +49,13 @@ func on_level_won():
 
 
 func on_level_lost():
-	$Ball.sleeping = true
+	$Ball.pause()
+	$Paddle.pause()
 	$HUD.show_message("Game Over!\nPress ESC to go back to title screen.", false)
 
 
 func on_life_lost():
-	$Ball.sleeping = true
+	$Ball.pause()
 	$Ball.reset(current_level.get_node("StartingBallPosition").position)
 	$HUD.life_lost()
 

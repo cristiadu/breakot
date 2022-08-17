@@ -51,7 +51,7 @@ func reset():
 	var blocks = get_tree().get_nodes_in_group("block")
 	self.active_blocks_count = blocks.size()
 	for block in blocks:
-		block.connect("hit", self, "increase_score", [block.points])
+		block.connect("hit", self, "increase_score")
 		
 	for heart in $Lives.get_children():
 		heart.get_node("AnimatedSprite").animation = "full"
@@ -78,10 +78,12 @@ func show_message(message, disappear_after_timer = true):
 		$InfoMessage.hide()
 
 
-func increase_score(points):
+func increase_score(block_destroyed, points):
 	current_points += points
-	self.active_blocks_count -= 1
 	$CurrentScore.text = str(current_points)
+	
+	if block_destroyed:
+		self.active_blocks_count -= 1
 	
 	if highscore < current_points:
 		set_highscore(current_points)
