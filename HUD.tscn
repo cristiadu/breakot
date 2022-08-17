@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/title-bg.png" type="Texture" id=1]
-[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -11,10 +11,14 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [node name="HUD" type="CanvasLayer"]
@@ -60,10 +64,10 @@ valign = 1
 [node name="ScoreLabel" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -195.0
-margin_top = 2.0
-margin_right = -7.0
-margin_bottom = 27.0
+margin_left = -196.0
+margin_top = 3.0
+margin_right = -8.0
+margin_bottom = 28.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -73,10 +77,13 @@ text = "Score:"
 [node name="CurrentScore" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -120.0
-margin_top = 2.0
-margin_right = -6.0
-margin_bottom = 27.0
+margin_left = -121.0
+margin_top = 3.0
+margin_right = -7.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "0"
 
@@ -84,9 +91,9 @@ text = "0"
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -238.0
-margin_top = 2.0
+margin_top = 3.0
 margin_right = -46.0
-margin_bottom = 27.0
+margin_bottom = 28.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -97,19 +104,22 @@ text = "Highscore:"
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -120.0
-margin_top = 2.0
+margin_top = 3.0
 margin_right = -24.0
-margin_bottom = 27.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "0"
 
 [node name="Lives" type="Node2D" parent="."]
 
 [node name="Heart1" parent="Lives" instance=ExtResource( 3 )]
-position = Vector2( 160, 16 )
+position = Vector2( 160, 18 )
 
 [node name="Heart2" parent="Lives" instance=ExtResource( 3 )]
-position = Vector2( 96, 16 )
+position = Vector2( 96, 18 )
 
 [node name="Heart3" parent="Lives" instance=ExtResource( 3 )]
-position = Vector2( 32, 16 )
+position = Vector2( 32, 18 )

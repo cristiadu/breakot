@@ -1,4 +1,14 @@
 extends Block
 
+
 func _ready():
-	points = 2
+	$Sprite.animation = "intact"
+	points = 3
+
+
+func hit():
+	if $Sprite.animation == "intact":
+		$Sprite.animation = "cracked"
+		emit_signal("hit", false, points)
+	else:
+		.hit()
