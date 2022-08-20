@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 300
+export var speed = 450
 var paddle_paused = false
 var screen_limit_left
 var screen_limit_right

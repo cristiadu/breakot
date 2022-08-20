@@ -1,72 +1,242 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://blocks/CrackeableGlassBlock.tscn" type="PackedScene" id=1]
 [ext_resource path="res://blocks/WeakGlassBlock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://blocks/MetalBlock.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/level1-bg.png" type="Texture" id=5]
 
 [node name="Level1" type="Node2D"]
 z_index = -1000
 
 [node name="Background" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 1024.0
+margin_bottom = 768.0
+rect_pivot_offset = Vector2( 232, 208 )
 texture = ExtResource( 5 )
 
 [node name="Blocks" type="Node2D" parent="."]
 
 [node name="CrackeableGlassBlock" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 256, 120 )
+position = Vector2( 176, 100 )
 
 [node name="CrackeableGlassBlock2" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 64, 56 )
+position = Vector2( 80, 52 )
 
 [node name="CrackeableGlassBlock4" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 192, 56 )
+position = Vector2( 176, 52 )
 
 [node name="CrackeableGlassBlock9" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 320, 56 )
+position = Vector2( 368, 52 )
 
 [node name="CrackeableGlassBlock10" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 576, 56 )
+position = Vector2( 560, 52 )
 
 [node name="CrackeableGlassBlock11" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 960, 56 )
+position = Vector2( 848, 52 )
 
 [node name="CrackeableGlassBlock12" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 896, 88 )
+position = Vector2( 944, 52 )
 
 [node name="CrackeableGlassBlock5" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 768, 120 )
+position = Vector2( 464, 100 )
 
 [node name="CrackeableGlassBlock6" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 128, 208 )
+position = Vector2( 752, 100 )
 
 [node name="CrackeableGlassBlock7" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 192, 176 )
+position = Vector2( 80, 100 )
 
 [node name="CrackeableGlassBlock8" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 256, 208 )
+position = Vector2( 272, 100 )
 
 [node name="CrackeableGlassBlock3" parent="Blocks" instance=ExtResource( 1 )]
-position = Vector2( 640, 88 )
+position = Vector2( 560, 100 )
 
 [node name="WeakGlassBlock" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 512, 120 )
+position = Vector2( 656, 100 )
 
 [node name="WeakGlassBlock2" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 384, 88 )
+position = Vector2( 368, 100 )
+
+[node name="CrackeableGlassBlock19" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 272, 124 )
+
+[node name="CrackeableGlassBlock20" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 560, 124 )
+
+[node name="CrackeableGlassBlock21" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 848, 124 )
+
+[node name="CrackeableGlassBlock22" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 176, 124 )
+
+[node name="CrackeableGlassBlock23" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 368, 124 )
+
+[node name="CrackeableGlassBlock24" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 656, 124 )
+
+[node name="WeakGlassBlock11" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 752, 124 )
+
+[node name="WeakGlassBlock12" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 464, 124 )
 
 [node name="WeakGlassBlock3" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 448, 56 )
+position = Vector2( 464, 52 )
 
 [node name="WeakGlassBlock4" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 832, 56 )
+position = Vector2( 752, 52 )
 
 [node name="WeakGlassBlock6" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 128, 88 )
+position = Vector2( 272, 52 )
 
 [node name="WeakGlassBlock5" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 704, 56 )
+position = Vector2( 656, 52 )
+
+[node name="CrackeableGlassBlock13" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 80, 76 )
+
+[node name="CrackeableGlassBlock14" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 176, 76 )
+
+[node name="CrackeableGlassBlock15" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 368, 76 )
+
+[node name="CrackeableGlassBlock16" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 560, 76 )
+
+[node name="CrackeableGlassBlock17" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 848, 76 )
+
+[node name="MetalBlock" parent="Blocks" instance=ExtResource( 3 )]
+position = Vector2( 464, 244 )
+
+[node name="CrackeableGlassBlock18" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 944, 76 )
+
+[node name="WeakGlassBlock7" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 464, 76 )
+
+[node name="WeakGlassBlock8" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 752, 76 )
+
+[node name="WeakGlassBlock9" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 272, 76 )
+
+[node name="WeakGlassBlock10" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 656, 76 )
+
+[node name="CrackeableGlassBlock25" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 176, 196 )
+
+[node name="CrackeableGlassBlock26" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 80, 148 )
+
+[node name="CrackeableGlassBlock27" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 176, 148 )
+
+[node name="CrackeableGlassBlock28" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 368, 148 )
+
+[node name="CrackeableGlassBlock29" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 560, 148 )
+
+[node name="CrackeableGlassBlock30" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 848, 148 )
+
+[node name="CrackeableGlassBlock31" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 944, 148 )
+
+[node name="CrackeableGlassBlock32" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 464, 196 )
+
+[node name="CrackeableGlassBlock33" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 752, 196 )
+
+[node name="CrackeableGlassBlock34" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 80, 196 )
+
+[node name="CrackeableGlassBlock35" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 272, 196 )
+
+[node name="CrackeableGlassBlock36" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 560, 196 )
+
+[node name="WeakGlassBlock13" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 656, 196 )
+
+[node name="WeakGlassBlock14" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 368, 196 )
+
+[node name="CrackeableGlassBlock37" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 272, 220 )
+
+[node name="CrackeableGlassBlock38" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 560, 220 )
+
+[node name="CrackeableGlassBlock39" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 848, 220 )
+
+[node name="CrackeableGlassBlock40" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 176, 220 )
+
+[node name="CrackeableGlassBlock41" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 368, 220 )
+
+[node name="CrackeableGlassBlock42" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 656, 220 )
+
+[node name="WeakGlassBlock15" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 752, 220 )
+
+[node name="WeakGlassBlock16" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 464, 220 )
+
+[node name="WeakGlassBlock17" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 464, 148 )
+
+[node name="WeakGlassBlock18" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 752, 148 )
+
+[node name="WeakGlassBlock19" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 272, 148 )
+
+[node name="WeakGlassBlock20" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 656, 148 )
+
+[node name="CrackeableGlassBlock43" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 80, 172 )
+
+[node name="CrackeableGlassBlock44" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 176, 172 )
+
+[node name="CrackeableGlassBlock45" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 368, 172 )
+
+[node name="CrackeableGlassBlock46" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 560, 172 )
+
+[node name="CrackeableGlassBlock47" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 848, 172 )
+
+[node name="CrackeableGlassBlock48" parent="Blocks" instance=ExtResource( 1 )]
+position = Vector2( 944, 172 )
+
+[node name="WeakGlassBlock21" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 464, 172 )
+
+[node name="WeakGlassBlock25" parent="Blocks" instance=ExtResource( 3 )]
+position = Vector2( 80, 220 )
+
+[node name="WeakGlassBlock22" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 752, 172 )
+
+[node name="WeakGlassBlock23" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 272, 172 )
+
+[node name="WeakGlassBlock24" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 656, 172 )
 
 [node name="StartingBallPosition" type="Position2D" parent="."]
 position = Vector2( 500, 300 )
