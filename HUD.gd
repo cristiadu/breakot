@@ -53,7 +53,7 @@ func reset():
 	for block in blocks:
 		if block.is_in_group("unbreakable_block"):
 			self.active_blocks_count -= 1
-			print("unbreakable block here")
+
 		block.connect("hit", self, "increase_score")
 		
 	for heart in $Lives.get_children():
