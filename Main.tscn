@@ -48,7 +48,6 @@ shape = SubResource( 4 )
 [node name="Paddle" parent="." instance=ExtResource( 5 )]
 
 [node name="Ball" parent="." instance=ExtResource( 6 )]
-moving_platform_apply_velocity_on_leave = 0
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 script = ExtResource( 4 )

@@ -3,7 +3,7 @@ extends Node2D
 export var total_levels = 5
 
 var game_started = false
-var current_level_number = 1
+var current_level_number = 0
 var current_level = null
 
 
@@ -28,7 +28,8 @@ func _ready():
 func _process(_delta):
 	if (not game_started) and Input.is_action_pressed("ui_accept"):
 		game_started = true
-		start_level(1)
+		current_level_number = 1
+		start_level(current_level_number)
 	if Input.is_action_pressed("ui_cancel"):
 		game_started = false
 		$Ball.pause()
