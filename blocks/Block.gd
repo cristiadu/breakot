@@ -28,6 +28,25 @@ func apply_color():
 	$Sprite.self_modulate = colors[random.randi_range(0, colors.size() - 1)]
 	
 	
-func hit():
+func hit():	
+	play_destroy_sound()
 	emit_signal("hit", true, points)
-	self.queue_free()
+	queue_free()
+
+
+func play_destroy_sound():
+	# We add into the Main scene so the "queue_free" is not delayed due to the sound playing.
+	var root_parent = get_node("/root/Main")
+	var sound_node_name = "HitSound" + get_block_type()
+	
+	if not root_parent.has_node(sound_node_name):
+		var new_parent_sound_node = $HitSound.duplicate()
+		new_parent_sound_node.name = sound_node_name
+		root_parent.add_child(new_parent_sound_node)
+		
+	var hit_sound_on_parent = root_parent.get_node(sound_node_name)
+	hit_sound_on_parent.play()
+
+
+func get_block_type():
+	return "Block"

@@ -44,6 +44,8 @@ func on_block_collision(body):
 		body.hit()
 	elif body.name == "BottomWall":
 		emit_signal("lost_life")
+	elif body.name == "Paddle":
+		$BallOnPaddleSound.play()
 
 
 func reset(pos):
