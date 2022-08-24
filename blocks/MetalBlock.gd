@@ -11,5 +11,8 @@ func apply_color():
 
 
 func hit():
-	# Do nothing as it's unbreakable.
-	pass
+	$HitSound.play()
+
+
+func get_block_type():
+	return "MetalBlock"

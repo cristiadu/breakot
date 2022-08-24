@@ -20,11 +20,21 @@ func _ready():
 	if err:
 		print("Error when linking HUD delete behavior")
 		
+	err = $HideHUDMessageTimer.connect("timeout", self, "on_timeout_hide_message")
+	if err:
+		print("Error when linking HUD delete behavior")
+		
 	if not save.file_exists(save_file):
 		save_highscore()
 	else:
 		load_highscore()
 	show_message(initial_text, false)
+
+
+func _process(_delta):
+	# If title screen is being shown, then background sound should play.
+	if $TitleBackground.visible and not $TitleBackgroundSound.playing:
+		$TitleBackgroundSound.play()
 
 
 func on_HUD_destroy():
@@ -63,10 +73,12 @@ func reset():
 func hide_title_screen():
 	$TitleScreen.visible = false
 	$TitleBackground.visible = false
+	$TitleBackgroundSound.stop()
 
 
 func show_title_screen():
 	current_points = 0
+	$HideHUDMessageTimer.stop()
 	$CurrentScore.text = str(current_points)
 	$TitleScreen.visible = true
 	$TitleBackground.visible = true
@@ -77,8 +89,11 @@ func show_message(message, disappear_after_timer = true):
 	$InfoMessage.text = message
 	$InfoMessage.show()
 	if disappear_after_timer:
-		yield(get_tree().create_timer(2), "timeout")
-		$InfoMessage.hide()
+		$HideHUDMessageTimer.start()
+
+
+func on_timeout_hide_message():
+	$InfoMessage.hide()
 
 
 func increase_score(block_destroyed, points):
@@ -89,10 +104,14 @@ func increase_score(block_destroyed, points):
 		self.active_blocks_count -= 1
 	
 	if highscore < current_points:
+		# When entered here for the first time for current level.
+		# So sound doesn't keep playing on each new score after having a new highscore.
+		if not new_highscore:
+			$NewHighscoreSound.play()
 		set_highscore(current_points)
 
 
-func set_highscore(score):
+func set_highscore(score):	
 	highscore = score
 	new_highscore = true
 	$Highscore.text = str(highscore)
