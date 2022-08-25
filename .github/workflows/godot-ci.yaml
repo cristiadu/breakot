@@ -1,0 +1,18 @@
+name: Godot Builder
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  Builder:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.com/greenfox/godot-build-automation:latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Godot Project
+      run: |
+        builder
