@@ -16,7 +16,7 @@ jobs:
     - name: Build Project
       run: |
         builder
-        cd public/web && mv breakot.html index.html && rm breakot.html
+        cd public/web && mv breakot.html index.html
     - name: itchio-windows
       uses: manleydev/butler-publish-itchio-action@master
       env:
