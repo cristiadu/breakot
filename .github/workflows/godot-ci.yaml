@@ -44,6 +44,7 @@ jobs:
       uses: manleydev/butler-publish-itchio-action@master
       env:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+        CHANNEL: html5
         ITCH_GAME: breakot
         ITCH_USER: cristiadu
         PACKAGE: public/web
