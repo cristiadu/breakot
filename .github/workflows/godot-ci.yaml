@@ -16,8 +16,34 @@ jobs:
     - name: Build Project
       run: |
         builder
-    - name: Storing Builds
-      uses: actions/upload-artifact@v3
-      with:
-        name: builds
-        path: public/*
+    - name: itchio-windows
+      uses: manleydev/butler-publish-itchio-action@master
+      env:
+        BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+        CHANNEL: windows
+        ITCH_GAME: breakot
+        ITCH_USER: cristiadu
+        PACKAGE: public/breakot_windows_.zip
+    - name: itchio-linux
+      uses: manleydev/butler-publish-itchio-action@master
+      env:
+        BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+        CHANNEL: linux
+        ITCH_GAME: breakot
+        ITCH_USER: cristiadu
+        PACKAGE: public/breakot_linux_.zip
+    - name: itchio-mac
+      uses: manleydev/butler-publish-itchio-action@master
+      env:
+        BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+        CHANNEL: mac
+        ITCH_GAME: breakot
+        ITCH_USER: cristiadu
+        PACKAGE: public/breakot_mac_.zip
+    - name: itchio-web
+      uses: manleydev/butler-publish-itchio-action@master
+      env:
+        BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+        ITCH_GAME: breakot
+        ITCH_USER: cristiadu
+        PACKAGE: public/web
