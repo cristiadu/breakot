@@ -13,6 +13,11 @@ jobs:
       image: registry.gitlab.com/greenfox/godot-build-automation:latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build Godot Project
+    - name: Build Project
       run: |
         builder
+    - name: Storing Builds
+      uses: actions/upload-artifact@v3
+      with:
+        name: builds
+        path: public/*
