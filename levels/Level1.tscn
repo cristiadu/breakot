@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://blocks/CrackeableGlassBlock.tscn" type="PackedScene" id=1]
 [ext_resource path="res://blocks/WeakGlassBlock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://blocks/MetalBlock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://blocks/BubbleBlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/level1-bg.png" type="Texture" id=5]
 
 [node name="Level1" type="Node2D"]
@@ -261,3 +262,12 @@ position = Vector2( 500, 300 )
 
 [node name="StartingPaddlePosition" type="Position2D" parent="."]
 position = Vector2( 500, 700 )
+
+[node name="BubbleBlock" parent="." instance=ExtResource( 4 )]
+position = Vector2( 296, 440 )
+
+[node name="BubbleBlock2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 688, 392 )
+
+[node name="BubbleBlock3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 168, 352 )

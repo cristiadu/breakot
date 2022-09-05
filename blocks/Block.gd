@@ -19,12 +19,12 @@ var colors = [
 signal hit
 
 func _ready():
-	random.randomize()
 	add_to_group("block")
 	apply_color()
 
 
 func apply_color():
+	random.randomize()
 	$Sprite.self_modulate = colors[random.randi_range(0, colors.size() - 1)]
 	
 	
