@@ -4,8 +4,9 @@
 [ext_resource path="res://blocks/BubbleBlock.gd" type="Script" id=2]
 [ext_resource path="res://assets/audio/block_bubble.wav" type="AudioStream" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 64, 16 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 16.0
+height = 96.0
 
 [node name="BubbleBlock" type="StaticBody2D" groups=["block"]]
 scale = Vector2( 0.75, 0.75 )
@@ -15,6 +16,7 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]

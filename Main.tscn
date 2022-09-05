@@ -40,11 +40,13 @@ shape = SubResource( 2 )
 [node name="TopWall" type="StaticBody2D" parent="CollisionWalls"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionWalls/TopWall"]
+position = Vector2( 0, 32 )
 shape = SubResource( 3 )
 
 [node name="BottomWall" type="StaticBody2D" parent="CollisionWalls"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionWalls/BottomWall"]
+position = Vector2( 0, -39 )
 shape = SubResource( 4 )
 
 [node name="Paddle" parent="." instance=ExtResource( 5 )]
