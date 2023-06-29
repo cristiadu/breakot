@@ -10,7 +10,7 @@ jobs:
   builder:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:${{ GODOT_VERSION }}
+      image: barichello/godot-ci:${{ env.GODOT_VERSION }}
     steps:
     - uses: actions/checkout@v2
     - name: Build Project
@@ -27,30 +27,30 @@ jobs:
       env:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
         CHANNEL: windows
-        ITCH_GAME: ${{ PROJECT_NAME }}
+        ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/${{ PROJECT_NAME }}_${{ CHANNEL }}.zip
+        PACKAGE: build/${{ env.PROJECT_NAME }}_${{ env.CHANNEL }}.zip
     - name: itchio-linux
       uses: manleydev/butler-publish-itchio-action@master
       env:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
         CHANNEL: linux
-        ITCH_GAME: ${{ PROJECT_NAME }}
+        ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/${{ PROJECT_NAME }}_${{ CHANNEL }}.zip
+        PACKAGE: build/${{ env.PROJECT_NAME }}_${{ env.CHANNEL }}.zip
     - name: itchio-mac
       uses: manleydev/butler-publish-itchio-action@master
       env:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
         CHANNEL: mac
-        ITCH_GAME: ${{ PROJECT_NAME }}
+        ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/${{ PROJECT_NAME }}_${{ CHANNEL }}.zip
+        PACKAGE: build/${{ env.PROJECT_NAME }}_${{ env.CHANNEL }}.zip
     - name: itchio-web
       uses: manleydev/butler-publish-itchio-action@master
       env:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
         CHANNEL: html5
-        ITCH_GAME: ${{ PROJECT_NAME }}
+        ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
         PACKAGE: build/web
