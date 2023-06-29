@@ -1,13 +1,13 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-export var speed = 500
+@export var speed = 500
 var paddle_paused = false
 var screen_limit_left
 var screen_limit_right
 
 func _ready():
-	screen_limit_left = 0 + $Sprite.texture.get_width() / 4
-	screen_limit_right = get_viewport_rect().size.x - $Sprite.texture.get_width() / 4
+	screen_limit_left = 0 + $Sprite2D.texture.get_width() / 4
+	screen_limit_right = get_viewport_rect().size.x - $Sprite2D.texture.get_width() / 4
 	hide()
 	
 	

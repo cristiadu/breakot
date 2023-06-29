@@ -1,24 +1,30 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://r6lpk8sid776"]
 
-[ext_resource path="res://assets/empty-heart.png" type="Texture" id=1]
-[ext_resource path="res://assets/full-heart.png" type="Texture" id=2]
+[ext_resource type="Texture2D" uid="uid://djwwdes5n4jvl" path="res://assets/empty-heart.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://c3cemc1buyvh6" path="res://assets/full-heart.png" id="2"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 1 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
 "loop": true,
-"name": "empty",
+"name": &"empty",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
 "loop": false,
-"name": "full",
+"name": &"full",
 "speed": 5.0
-} ]
+}]
 
 [node name="Heart" type="Node2D"]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.25, 0.25 )
-frames = SubResource( 1 )
-animation = "full"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("1")
+animation = &"full"

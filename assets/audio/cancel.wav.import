@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/cancel.wav-98fadd4b25f8345c427119fd602dd771.sample"
+type="AudioStreamWAV"
+uid="uid://seuh08dkamnc"
+path="res://.godot/imported/cancel.wav-98fadd4b25f8345c427119fd602dd771.sample"
 
 [deps]
 
 source_file="res://assets/audio/cancel.wav"
-dest_files=[ "res://.import/cancel.wav-98fadd4b25f8345c427119fd602dd771.sample" ]
+dest_files=["res://.godot/imported/cancel.wav-98fadd4b25f8345c427119fd602dd771.sample"]
 
 [params]
 

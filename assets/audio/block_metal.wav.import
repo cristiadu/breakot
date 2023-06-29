@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/block_metal.wav-ef9b621c8324a329ffadc896eaa5e3d0.sample"
+type="AudioStreamWAV"
+uid="uid://b68m3aohyvi0l"
+path="res://.godot/imported/block_metal.wav-ef9b621c8324a329ffadc896eaa5e3d0.sample"
 
 [deps]
 
 source_file="res://assets/audio/block_metal.wav"
-dest_files=[ "res://.import/block_metal.wav-ef9b621c8324a329ffadc896eaa5e3d0.sample" ]
+dest_files=["res://.godot/imported/block_metal.wav-ef9b621c8324a329ffadc896eaa5e3d0.sample"]
 
 [params]
 

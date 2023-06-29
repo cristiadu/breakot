@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/start_game.wav-db6ce1b29f3667a5300499e894014d6b.sample"
+type="AudioStreamWAV"
+uid="uid://be3hfrpfpfa4y"
+path="res://.godot/imported/start_game.wav-db6ce1b29f3667a5300499e894014d6b.sample"
 
 [deps]
 
 source_file="res://assets/audio/start_game.wav"
-dest_files=[ "res://.import/start_game.wav-db6ce1b29f3667a5300499e894014d6b.sample" ]
+dest_files=["res://.godot/imported/start_game.wav-db6ce1b29f3667a5300499e894014d6b.sample"]
 
 [params]
 

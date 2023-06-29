@@ -1,6 +1,6 @@
 extends Node2D
 
-export var total_levels = 5
+@export var total_levels = 5
 
 var game_started = false
 var current_level_number = 0
@@ -8,19 +8,19 @@ var current_level = null
 
 
 func _ready():
-	var err = $HUD.connect("level_won", self, "on_level_won")
+	var err = $HUD.level_won.connect(on_level_won)
 	if err:
 		print("Error when linking behavior of winning a level")
 		
-	err = $HUD.connect("level_lost", self, "on_level_lost")
+	err = $HUD.level_lost.connect(on_level_lost)
 	if err:
 		print("Error when linking behavior of losing a level")
 		
-	err = $Ball.connect("lost_life", self, "on_life_lost")
+	err = $Ball.lost_life.connect(on_life_lost)
 	if err:
 		print("Error when linking behavior of losing a life")
 		
-	err = $StartGameTimer.connect("timeout", self, "run_game")
+	err = $StartGameTimer.timeout.connect(run_game)
 	if err:
 		print("Error when linking behavior of run_game timer")
 		
@@ -46,7 +46,7 @@ func on_level_won():
 	if current_level_number < total_levels:
 		$HUD.show_message("You Won This Level!\nLoading next one...")
 		current_level_number += 1
-		yield(get_tree().create_timer(3), "timeout")
+		await get_tree().create_timer(3).timeout
 		start_level(current_level_number)
 	else:
 		$HUD.show_message("You Won The Game!\nPress ESC to go back to title screen.", false)
@@ -76,9 +76,9 @@ func start_level(level_number):
 		
 	var level_name = "Level" + str(level_number)
 	var level_to_load = load("res://levels/" + level_name + ".tscn")
-	current_level = level_to_load.instance()
+	current_level = level_to_load.instantiate()
 	current_level.set_name(level_name)
-	add_child_below_node($CollisionWalls, current_level)
+	$CollisionWalls.add_sibling(current_level)
 	$HUD.hide_title_screen()
 	$HUD.show_message("Starting Game...")
 	$StartGameTimer.start()

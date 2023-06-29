@@ -1,28 +1,27 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cp5auh6tptpuv"]
 
-[ext_resource path="res://assets/ball.png" type="Texture" id=1]
-[ext_resource path="res://Ball.gd" type="Script" id=2]
-[ext_resource path="res://assets/audio/ball.wav" type="AudioStream" id=3]
+[ext_resource type="Texture2D" uid="uid://d4n20ctejlyys" path="res://assets/ball.png" id="1"]
+[ext_resource type="Script" path="res://Ball.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://ggagn3f4faxj" path="res://assets/audio/ball.wav" id="3"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 8.0
 
-[node name="Ball" type="KinematicBody2D"]
-scale = Vector2( 0.5, 0.5 )
-moving_platform_apply_velocity_on_leave = 2
-script = ExtResource( 2 )
+[node name="Ball" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2")
 
-[node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 1 )
-region_filter_clip = true
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
+region_filter_clip_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 1.5, 1.5 )
-shape = SubResource( 1 )
+scale = Vector2(1.5, 1.5)
+shape = SubResource("1")
 
 [node name="BallSpeedTimer" type="Timer" parent="."]
 wait_time = 30.0
 
 [node name="BallOnPaddleSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource("3")

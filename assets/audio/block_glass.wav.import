@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/block_glass.wav-d0dc66dc0611ee81234d3cb048f80fef.sample"
+type="AudioStreamWAV"
+uid="uid://fk61t7fuiruv"
+path="res://.godot/imported/block_glass.wav-d0dc66dc0611ee81234d3cb048f80fef.sample"
 
 [deps]
 
 source_file="res://assets/audio/block_glass.wav"
-dest_files=[ "res://.import/block_glass.wav-d0dc66dc0611ee81234d3cb048f80fef.sample" ]
+dest_files=["res://.godot/imported/block_glass.wav-d0dc66dc0611ee81234d3cb048f80fef.sample"]
 
 [params]
 
