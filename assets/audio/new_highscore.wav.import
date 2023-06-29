@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/new_highscore.wav-336e4757db4250ad4151777462d8230c.sample"
+type="AudioStreamWAV"
+uid="uid://dcvajpxmtjw5p"
+path="res://.godot/imported/new_highscore.wav-336e4757db4250ad4151777462d8230c.sample"
 
 [deps]
 
 source_file="res://assets/audio/new_highscore.wav"
-dest_files=[ "res://.import/new_highscore.wav-336e4757db4250ad4151777462d8230c.sample" ]
+dest_files=["res://.godot/imported/new_highscore.wav-336e4757db4250ad4151777462d8230c.sample"]
 
 [params]
 

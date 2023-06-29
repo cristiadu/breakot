@@ -1,7 +1,7 @@
 extends StaticBody2D
 class_name Block
 
-export var points = 1
+@export var points = 1
 
 var random = RandomNumberGenerator.new()
 var colors = [
@@ -25,12 +25,12 @@ func _ready():
 
 func apply_color():
 	random.randomize()
-	$Sprite.self_modulate = colors[random.randi_range(0, colors.size() - 1)]
+	$Sprite2D.self_modulate = colors[random.randi_range(0, colors.size() - 1)]
 	
 	
-func hit():	
+func on_hit():	
 	play_destroy_sound()
-	emit_signal("hit", true, points)
+	hit.emit(true, points)
 	queue_free()
 
 

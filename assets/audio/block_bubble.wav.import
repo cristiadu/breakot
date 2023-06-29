@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/block_bubble.wav-a00ce715f851a577deec419d60ad79a1.sample"
+type="AudioStreamWAV"
+uid="uid://tmcffx0noed"
+path="res://.godot/imported/block_bubble.wav-a00ce715f851a577deec419d60ad79a1.sample"
 
 [deps]
 
 source_file="res://assets/audio/block_bubble.wav"
-dest_files=[ "res://.import/block_bubble.wav-a00ce715f851a577deec419d60ad79a1.sample" ]
+dest_files=["res://.godot/imported/block_bubble.wav-a00ce715f851a577deec419d60ad79a1.sample"]
 
 [params]
 

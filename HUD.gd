@@ -9,22 +9,20 @@ var current_points = 0
 var highscore = 0
 var initial_lives = 3
 var lives = initial_lives
-var active_blocks_count setget set_blocks_count
+var active_blocks_count : set = on_blocks_count_setter
 
-var save = File.new()
 var save_file = "user://game.save"
 
-
 func _ready():
-	var err = self.connect("tree_exiting", self, "on_HUD_destroy")
+	var err = self.tree_exiting.connect(on_HUD_destroy)
 	if err:
 		print("Error when linking HUD delete behavior")
 		
-	err = $HideHUDMessageTimer.connect("timeout", self, "on_timeout_hide_message")
+	err = $HideHUDMessageTimer.timeout.connect(on_timeout_hide_message)
 	if err:
 		print("Error when linking HUD delete behavior")
 		
-	if not save.file_exists(save_file):
+	if not FileAccess.file_exists(save_file):
 		save_highscore()
 	else:
 		load_highscore()
@@ -43,16 +41,16 @@ func on_HUD_destroy():
 
 
 func life_lost():
-	get_node("Lives/Heart" + str(lives) + "/AnimatedSprite").animation = "empty"
+	get_node("Lives/Heart" + str(lives) + "/AnimatedSprite2D").animation = "empty"
 	lives-=1
 	if lives == 0:
-		emit_signal("level_lost")
+		level_lost.emit()
 
 
-func set_blocks_count(new_count):
+func on_blocks_count_setter(new_count):
 	active_blocks_count = new_count
 	if active_blocks_count == 0:
-		emit_signal("level_won")
+		level_won.emit()
 
 
 func reset():
@@ -64,10 +62,10 @@ func reset():
 		if block.is_in_group("unbreakable_block"):
 			self.active_blocks_count -= 1
 
-		block.connect("hit", self, "increase_score")
+		block.hit.connect(increase_score)
 		
 	for heart in $Lives.get_children():
-		heart.get_node("AnimatedSprite").animation = "full"
+		heart.get_node("AnimatedSprite2D").animation = "full"
 
 
 func hide_title_screen():
@@ -107,7 +105,7 @@ func increase_score(block_destroyed, points):
 		# When entered here for the first time for current level.
 		# So sound doesn't keep playing on each new score after having a new highscore.
 		if not new_highscore:
-			$NewHighscoreSound.play()
+			await $NewHighscoreSound.play()
 		set_highscore(current_points)
 
 
@@ -118,14 +116,13 @@ func set_highscore(score):
 
 
 func load_highscore():
-	save.open(save_file, File.READ)
+	var save = FileAccess.open(save_file, FileAccess.READ)
 	var save_data = save.get_var()
-	save.close()
 	set_highscore(save_data["highscore"])
-	
+	save.close()
 
 func save_highscore():
-	save.open(save_file, File.WRITE)
+	var save = FileAccess.open(save_file, FileAccess.WRITE)
 	var save_data = { "highscore": highscore }
 	save.store_var(save_data)
 	save.close()

@@ -10,7 +10,7 @@ func apply_color():
 	pass
 
 
-func hit():
+func on_hit():
 	$HitSound.play()
 
 

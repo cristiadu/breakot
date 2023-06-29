@@ -1,9 +1,9 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 signal lost_life
 
-export var initial_speed = 300
-export var speed_increment = 150.0
+@export var initial_speed = 300
+@export var speed_increment = 150.0
 
 # max direction used for both X and Y axis.
 # Configuring this to smaller numbers reduces the boundaries of the ball's angle after colliding.
@@ -17,9 +17,9 @@ var screen_limit_right
 
 
 func _ready():
-	screen_limit_left = $Sprite.texture.get_width() / 12
-	screen_limit_right = get_viewport_rect().size.x - $Sprite.texture.get_width() / 12
-	var err = $BallSpeedTimer.connect("timeout", self, "increase_ball_speed")
+	screen_limit_left = $Sprite2D.texture.get_width() / 12
+	screen_limit_right = get_viewport_rect().size.x - $Sprite2D.texture.get_width() / 12
+	var err = $BallSpeedTimer.timeout.connect(increase_ball_speed)
 	if err:
 		print("Error when creating ball speed timer.")
 
@@ -29,21 +29,21 @@ func _ready():
 
 func _physics_process(delta):
 	if not ball_paused:
-		var velocity = speed * delta * direction
-		var collision = move_and_collide(velocity)
+		var obj_velocity = speed * delta * direction
+		var collision = move_and_collide(obj_velocity)
 		if collision:
-			direction = direction.bounce(collision.normal)
+			direction = direction.bounce(collision.get_normal())
 			direction.x = clamp(direction.x, -max_direction_value, max_direction_value)
 			direction.y = clamp(direction.y, -max_direction_value, max_direction_value)
 			position.x = clamp(position.x, screen_limit_left, screen_limit_right)
-			on_block_collision(collision.collider)
+			on_block_collision(collision.get_collider())
 
 
 func on_block_collision(body):
 	if body.is_in_group("block"):
-		body.hit()
+		body.on_hit()
 	elif body.name == "BottomWall":
-		emit_signal("lost_life")
+		lost_life.emit()
 	elif body.name == "Paddle":
 		$BallOnPaddleSound.play()
 
