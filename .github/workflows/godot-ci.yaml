@@ -19,9 +19,9 @@ jobs:
         mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
         mkdir -v -p build
         godot --headless --verbose --export "Windows Desktop" build/${PROJECT_NAME}_windows.exe
-        godot --headless --verbose --export-release "Linux/X11" build/${PROJECT_NAME}_linux.x86_64
-        godot --headless --verbose --export-release "Mac OSX" build/${PROJECT_NAME}_mac.zip
-        godot --headless --verbose --export-release "HTML5" build/web/index.html
+        godot --headless --verbose --export "Linux/X11" build/${PROJECT_NAME}_linux.x86_64
+        godot --headless --verbose --export "Mac OSX" build/${PROJECT_NAME}_mac.zip
+        godot --headless --verbose --export "HTML5" build/web/index.html
     - name: itchio-windows
       uses: manleydev/butler-publish-itchio-action@master
       env:
