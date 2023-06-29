@@ -1,5 +1,5 @@
 # Breakôt
-Breakôt - Breakout in Godot
+Breakôt - Breakout in Godot 4.0
 
 ## Play the game
 
