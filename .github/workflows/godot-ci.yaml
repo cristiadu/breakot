@@ -18,10 +18,10 @@ jobs:
         mkdir -v -p ~/.local/share/godot/templates
         mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
         mkdir -v -p build
-        godot --headless --verbose --export-release "Windows Desktop" build/${PROJECT_NAME}_windows.exe
-        godot --headless --verbose --export-release "Linux/X11" build/${PROJECT_NAME}_linux.x86_64
-        godot --headless --verbose --export-release "Mac OSX" ../build/${PROJECT_NAME}_mac.zip
-        godot --headless --verbose --export-release "HTML5" build/web/index.html
+        godot --headless --verbose --export-release "windows" build/${PROJECT_NAME}_windows.exe
+        godot --headless --verbose --export-release "linux" build/${PROJECT_NAME}_linux.x86_64
+        godot --headless --verbose --export-release "mac" ../build/${PROJECT_NAME}_mac.zip
+        godot --headless --verbose --export-release "html" build/web/index.html
     - name: itchio-windows
       uses: manleydev/butler-publish-itchio-action@master
       env:
@@ -29,7 +29,7 @@ jobs:
         CHANNEL: windows
         ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/${{ env.PROJECT_NAME }}_${{ env.CHANNEL }}.exe
+        PACKAGE: build/${{ env.PROJECT_NAME }}_windows.exe
     - name: itchio-linux
       uses: manleydev/butler-publish-itchio-action@master
       env:
@@ -37,7 +37,7 @@ jobs:
         CHANNEL: linux
         ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/${{ env.PROJECT_NAME }}_${{ env.CHANNEL }}.x86_64
+        PACKAGE: build/${{ env.PROJECT_NAME }}_linux.x86_64
     - name: itchio-mac
       uses: manleydev/butler-publish-itchio-action@master
       env:
@@ -45,7 +45,7 @@ jobs:
         CHANNEL: mac
         ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/${{ env.PROJECT_NAME }}_${{ env.CHANNEL }}.zip
+        PACKAGE: build/${{ env.PROJECT_NAME }}_mac.zip
     - name: itchio-web
       uses: manleydev/butler-publish-itchio-action@master
       env:
