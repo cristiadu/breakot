@@ -3,46 +3,54 @@ name: Godot Builder
 on:
   push:
     branches: [ main ]
+env:
+  GODOT_VERSION: 4.0.3
+  PROJECT_NAME: breakot
 jobs:
-  Builder:
+  builder:
     runs-on: ubuntu-latest
     container:
-      image: registry.gitlab.com/greenfox/godot-build-automation:latest
+      image: barichello/godot-ci:${{ GODOT_VERSION }}
     steps:
     - uses: actions/checkout@v2
     - name: Build Project
       run: |
-        builder
-        cd public/web && mv breakot.html index.html
+        mkdir -v -p ~/.local/share/godot/templates
+        mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+        mkdir -v -p build
+        godot -v --export "Windows Desktop" build/${PROJECT_NAME}_windows.zip
+        godot -v --export "Linux/X11" build/${PROJECT_NAME}_linux.zip
+        godot -v --export "Mac OSX" ../build/${PROJECT_NAME}_mac.zip
+        godot -v --export "HTML5" build/web/index.html
     - name: itchio-windows
       uses: manleydev/butler-publish-itchio-action@master
       env:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
         CHANNEL: windows
-        ITCH_GAME: breakot
+        ITCH_GAME: ${{ PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: public/breakot_windows_.zip
+        PACKAGE: build/${{ PROJECT_NAME }}_${{ CHANNEL }}.zip
     - name: itchio-linux
       uses: manleydev/butler-publish-itchio-action@master
       env:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
         CHANNEL: linux
-        ITCH_GAME: breakot
+        ITCH_GAME: ${{ PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: public/breakot_linux_.zip
+        PACKAGE: build/${{ PROJECT_NAME }}_${{ CHANNEL }}.zip
     - name: itchio-mac
       uses: manleydev/butler-publish-itchio-action@master
       env:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
         CHANNEL: mac
-        ITCH_GAME: breakot
+        ITCH_GAME: ${{ PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: public/breakot_mac_.zip
+        PACKAGE: build/${{ PROJECT_NAME }}_${{ CHANNEL }}.zip
     - name: itchio-web
       uses: manleydev/butler-publish-itchio-action@master
       env:
         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
         CHANNEL: html5
-        ITCH_GAME: breakot
+        ITCH_GAME: ${{ PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: public/web
+        PACKAGE: build/web
