@@ -51,7 +51,7 @@ jobs:
       image: barichello/godot-ci:4.0.3
     steps:
     - uses: actions/checkout@v2
-    - name: build-linux
+    - name: build-mac
       run: |
         godot -v -e --quit --headless
         mkdir -v -p build/mac
@@ -70,7 +70,7 @@ jobs:
       image: barichello/godot-ci:4.0.3
     steps:
     - uses: actions/checkout@v2
-    - name: build-linux
+    - name: build-web
       run: |
         godot -v -e --quit --headless
         mkdir -v -p build/web
