@@ -25,7 +25,7 @@ jobs:
         CHANNEL: windows
         ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/windows/${{ env.PROJECT_NAME }.exe
+        PACKAGE: build/windows/${{ env.PROJECT_NAME }).exe
   linux-builder:
     runs-on: ubuntu-latest
     container:
