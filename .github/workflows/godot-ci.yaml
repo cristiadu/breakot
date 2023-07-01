@@ -7,21 +7,17 @@ env:
   GODOT_VERSION: 4.0.3
   PROJECT_NAME: breakot
 jobs:
-  builder:
+  windows-builder:
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.0.3
     steps:
     - uses: actions/checkout@v2
-    - name: Build Project
+    - name: build-windows
       run: |
-        mkdir -v -p ~/.local/share/godot/templates
-        mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-        mkdir -v -p build
-        godot --headless --verbose --export-release "Windows Desktop" build/${PROJECT_NAME}_windows.exe
-        godot --headless --verbose --export-release "Linux/X11" build/${PROJECT_NAME}_linux.x86_64
-        godot --headless --verbose --export-release "Mac OSX" build/${PROJECT_NAME}_mac.zip
-        godot --headless --verbose --export-release "HTML5" build/web/index.html
+        godot -v -e --quit --headless
+        mkdir -v -p build/windows
+        godot -v --export-release --headless "Windows Desktop" build/windows/$PROJECT_NAME.exe
     - name: itchio-windows
       uses: manleydev/butler-publish-itchio-action@master
       env:
@@ -29,7 +25,18 @@ jobs:
         CHANNEL: windows
         ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/${{ env.PROJECT_NAME }}_windows.exe
+        PACKAGE: build/windows/${{ env.PROJECT_NAME }.exe
+  linux-builder:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.0.3
+    steps:
+    - uses: actions/checkout@v2
+    - name: build-linux
+      run: |
+        godot -v -e --quit --headless
+        mkdir -v -p build/linux
+        godot -v --export-release --headless "Linux/X11" build/linux/$PROJECT_NAME.x86_64
     - name: itchio-linux
       uses: manleydev/butler-publish-itchio-action@master
       env:
@@ -37,7 +44,18 @@ jobs:
         CHANNEL: linux
         ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/${{ env.PROJECT_NAME }}_linux.x86_64
+        PACKAGE: build/linux/${{ env.PROJECT_NAME }}.x86_64
+  macos-builder:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.0.3
+    steps:
+    - uses: actions/checkout@v2
+    - name: build-linux
+      run: |
+        godot -v -e --quit --headless
+        mkdir -v -p build/mac
+        godot -v --export-release --headless "Mac OSX" build/mac/$PROJECT_NAME.zip
     - name: itchio-mac
       uses: manleydev/butler-publish-itchio-action@master
       env:
@@ -45,7 +63,18 @@ jobs:
         CHANNEL: mac
         ITCH_GAME: ${{ env.PROJECT_NAME }}
         ITCH_USER: cristiadu
-        PACKAGE: build/${{ env.PROJECT_NAME }}_mac.zip
+        PACKAGE: build/mac/${{ env.PROJECT_NAME }}.zip
+  web-builder:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.0.3
+    steps:
+    - uses: actions/checkout@v2
+    - name: build-linux
+      run: |
+        godot -v -e --quit --headless
+        mkdir -v -p build/web
+        godot -v --export-release --headless "HTML5" build/web/index.html
     - name: itchio-web
       uses: manleydev/butler-publish-itchio-action@master
       env:
