@@ -19,7 +19,7 @@ jobs:
         mkdir -v -p ~/.local/share/godot/export_templates
         mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         mkdir -v -p build/windows
-        godot -v --export-release --headless "Windows Desktop" build/windows/$PROJECT_NAME.exe
+        godot -v --export-release --headless "windows" build/windows/$PROJECT_NAME.exe
     - name: itchio-windows
       uses: manleydev/butler-publish-itchio-action@master
       env:
@@ -40,7 +40,7 @@ jobs:
         mkdir -v -p ~/.local/share/godot/export_templates
         mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         mkdir -v -p build/linux
-        godot -v --export-release --headless "Linux/X11" build/linux/$PROJECT_NAME.x86_64
+        godot -v --export-release --headless "linux" build/linux/$PROJECT_NAME.x86_64
     - name: itchio-linux
       uses: manleydev/butler-publish-itchio-action@master
       env:
@@ -61,7 +61,7 @@ jobs:
         mkdir -v -p ~/.local/share/godot/export_templates
         mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         mkdir -v -p build/mac
-        godot -v --export-release --headless "Mac OSX" build/mac/$PROJECT_NAME.zip
+        godot -v --export-release --headless "mac" build/mac/$PROJECT_NAME.zip
     - name: itchio-mac
       uses: manleydev/butler-publish-itchio-action@master
       env:
@@ -82,7 +82,7 @@ jobs:
         mkdir -v -p ~/.local/share/godot/export_templates
         mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         mkdir -v -p build/web
-        godot -v --export-release --headless "HTML5" build/web/index.html
+        godot -v --export-release --headless "web" build/web/index.html
     - name: itchio-web
       uses: manleydev/butler-publish-itchio-action@master
       env:
