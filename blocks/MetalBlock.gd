@@ -3,7 +3,7 @@ extends Block
 func _ready():
 	add_to_group("unbreakable_block")
 	points = 0
-	
+	super._ready()
 
 func apply_color():
 	# No color applied to this block.

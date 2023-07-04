@@ -72,7 +72,8 @@ func run_game():
 func start_level(level_number):
 	# Load new level scene dinamically
 	if current_level != null:
-		current_level.queue_free()
+		var previous_level = current_level
+		previous_level.queue_free()
 		
 	var level_name = "Level" + str(level_number)
 	var level_to_load = load("res://levels/" + level_name + ".tscn")
