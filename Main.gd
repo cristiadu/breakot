@@ -73,6 +73,7 @@ func start_level(level_number):
 	# Load new level scene dinamically
 	if current_level != null:
 		var previous_level = current_level
+		remove_child(previous_level)
 		previous_level.queue_free()
 		
 	var level_name = "Level" + str(level_number)
