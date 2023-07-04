@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpuy31prlb1dx"]
+[gd_scene load_steps=8 format=3 uid="uid://dpuy31prlb1dx"]
 
 [ext_resource type="Texture2D" uid="uid://du87chwgf0bfm" path="res://assets/block_glass_1.png" id="1"]
 [ext_resource type="Script" path="res://blocks/CrackeableGlassBlock.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://c14xxmbecql3v" path="res://assets/block_glass_1_cracked.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://fk61t7fuiruv" path="res://assets/audio/block_glass.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://tmcffx0noed" path="res://assets/audio/block_bubble.wav" id="5_lf0y7"]
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
@@ -42,6 +43,6 @@ shape = SubResource("3")
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4")
-pitch_scale = 2.01
 
 [node name="CrackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_lf0y7")

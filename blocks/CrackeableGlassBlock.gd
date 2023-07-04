@@ -4,6 +4,7 @@ extends Block
 func _ready():
 	$Sprite2D.animation = "intact"
 	points = 3
+	super._ready()
 
 
 func on_hit():
