@@ -2,23 +2,15 @@ extends CharacterBody2D
 
 signal lost_life
 
-@export var initial_speed = 300
-@export var speed_increment = 150.0
+@export var initial_speed = 150.0
+@export var speed_increment = 75.0
 
-# max direction used for both X and Y axis.
-# Configuring this to smaller numbers reduces the boundaries of the ball's angle after colliding.
-var max_direction_value = 0.84
-
-var speed = initial_speed
-var ball_paused = true
+var speed: float = initial_speed
+var ball_paused: bool = true
 var direction = Vector2(1, 0).rotated(PI/4)
-var screen_limit_left
-var screen_limit_right
 
 
 func _ready():
-	screen_limit_left = $Sprite2D.texture.get_width() / 12
-	screen_limit_right = get_viewport_rect().size.x - $Sprite2D.texture.get_width() / 12
 	var err = $BallSpeedTimer.timeout.connect(increase_ball_speed)
 	if err:
 		print("Error when creating ball speed timer.")
@@ -31,11 +23,18 @@ func _physics_process(delta):
 	if not ball_paused:
 		var obj_velocity = speed * delta * direction
 		var collision = move_and_collide(obj_velocity)
-		if collision:
-			direction = direction.bounce(collision.get_normal())
-			direction.x = clamp(direction.x, -max_direction_value, max_direction_value)
-			direction.y = clamp(direction.y, -max_direction_value, max_direction_value)
-			position.x = clamp(position.x, screen_limit_left, screen_limit_right)
+		if collision:		
+			# If paddle is moving, then ball direction is changed based on it.
+			if collision.get_collider_velocity() != Vector2.ZERO:
+				var temp_direction = direction + collision.get_collider_velocity()
+				direction.x = temp_direction.normalized().x
+			
+			var new_direction = direction.bounce(collision.get_normal())
+			if(!new_direction.is_normalized()):
+				direction = new_direction.normalized()
+			else:
+				direction = new_direction
+				
 			on_block_collision(collision.get_collider())
 
 
