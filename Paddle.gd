@@ -31,3 +31,7 @@ func reset(pos):
 
 func pause():
 	paddle_paused = true
+	
+	
+func unpause():
+	paddle_paused = false

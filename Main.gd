@@ -3,6 +3,8 @@ extends Node2D
 @export var total_levels = 5
 
 var game_started = false
+var game_paused = false
+var game_muted = false
 var current_level_number = 0
 var current_level = null
 
@@ -28,17 +30,33 @@ func _ready():
 
 
 func _process(_delta):
-	if (not game_started) and Input.is_action_pressed("ui_accept"):
+	if (not game_started) and Input.is_action_just_pressed("ui_accept"):
 		game_started = true
-		current_level_number = 1
+		current_level_number = 2
 		$StartGameSound.play()
 		start_level(current_level_number)
-	if Input.is_action_pressed("ui_cancel") and game_started:
+	if Input.is_action_just_pressed("ui_cancel") and game_started:
 		game_started = false
 		pause_game_objects()
 		$CancelSound.play()
 		$StartGameTimer.stop()
 		$HUD.show_title_screen()
+	if Input.is_action_just_pressed("ui_pause") and game_started:
+		if not game_paused:
+			game_paused = true
+			pause_game_objects()
+			$HUD.show_message("GAME PAUSED.", false)
+		else:
+			game_paused = false
+			unpause_game_objects()
+			$HUD.on_timeout_hide_message()
+	if Input.is_action_just_pressed("ui_mute"):
+		if not game_muted:
+			game_muted = true
+			mute_or_unmute_sound(true)
+		else:
+			game_muted = false
+			mute_or_unmute_sound(false)
 
 
 func on_level_won():
@@ -89,3 +107,13 @@ func start_level(level_number):
 func pause_game_objects():
 	$Ball.pause()
 	$Paddle.pause()
+
+
+func unpause_game_objects():
+	$Ball.unpause()
+	$Paddle.unpause()
+	
+	
+func mute_or_unmute_sound(mute):
+	var bus_idx = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_mute(bus_idx, mute) # or false

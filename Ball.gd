@@ -60,6 +60,11 @@ func reset(pos):
 func pause():
 	$BallSpeedTimer.stop()
 	ball_paused = true
+	
+	
+func unpause():
+	$BallSpeedTimer.start()
+	ball_paused = false
 
 
 func increase_ball_speed():

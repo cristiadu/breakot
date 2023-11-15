@@ -11,7 +11,7 @@ var initial_lives = 3
 var lives = initial_lives
 var active_blocks_count : set = on_blocks_count_setter
 
-var save_file = "user://game.save"
+var save_file = "user://user.save"
 
 func _ready():
 	var err = self.tree_exiting.connect(on_HUD_destroy)
@@ -105,13 +105,14 @@ func increase_score(block_destroyed, points):
 		# When entered here for the first time for current level.
 		# So sound doesn't keep playing on each new score after having a new highscore.
 		if not new_highscore:
-			await $NewHighscoreSound.play()
+			$NewHighscoreSound.play()
+			new_highscore = true
+			
 		set_highscore(current_points)
 
 
 func set_highscore(score):	
 	highscore = score
-	new_highscore = true
 	$Highscore.text = str(highscore)
 
 
