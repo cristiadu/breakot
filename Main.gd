@@ -32,7 +32,7 @@ func _ready():
 func _process(_delta):
 	if (not game_started) and Input.is_action_just_pressed("ui_accept"):
 		game_started = true
-		current_level_number = 2
+		current_level_number = 1
 		$StartGameSound.play()
 		start_level(current_level_number)
 	if Input.is_action_just_pressed("ui_cancel") and game_started:
