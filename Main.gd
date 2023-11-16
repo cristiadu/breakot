@@ -30,33 +30,29 @@ func _ready():
 
 
 func _process(_delta):
-	if (not game_started) and Input.is_action_just_pressed("ui_accept"):
+	if $HUD/TitleBackground.visible and Input.is_action_just_pressed("ui_accept"):
+		# Game can be re-initalized only from title screen.
 		current_level_number = 1
 		$StartGameSound.play()
 		start_level(current_level_number)
-		game_started = true
-	if Input.is_action_just_pressed("ui_cancel") and game_started:
+	if Input.is_action_just_pressed("ui_cancel") and not $HUD/TitleBackground.visible:
+		# Cancel can happen at any time if game is being played or initialized, so whenever title screen isn't there.
 		game_started = false
 		pause_game_objects()
 		$CancelSound.play()
 		$StartGameTimer.stop()
 		$HUD.show_title_screen()
 	if Input.is_action_just_pressed("ui_pause") and game_started:
-		if not game_paused:
-			game_paused = true
+		# Game can only be paused if it was already initialized.	
+		game_paused = not game_paused # new state of game_paused boolean after "P" is pressed again.
+		if game_paused:
 			pause_game_objects()
 			$HUD.show_message("GAME PAUSED.", false)
 		else:
-			game_paused = false
 			unpause_game_objects()
 			$HUD.on_timeout_hide_message()
 	if Input.is_action_just_pressed("ui_mute"):
-		if not game_muted:
-			game_muted = true
-			mute_or_unmute_sound(true)
-		else:
-			game_muted = false
-			mute_or_unmute_sound(false)
+		mute_or_unmute_sound(not game_muted)
 
 
 func on_level_won():
@@ -67,10 +63,12 @@ func on_level_won():
 		await get_tree().create_timer(3).timeout
 		start_level(current_level_number)
 	else:
+		game_started = false
 		$HUD.show_message("You Won The Game!\nPress ESC to go back to title screen.", false)
 
 
 func on_level_lost():
+	game_started = false
 	pause_game_objects()
 	$HUD.show_message("Game Over!\nPress ESC to go back to title screen.", false)
 
@@ -82,6 +80,7 @@ func on_life_lost():
 
 
 func run_game():
+	game_started = true
 	$Ball.reset(current_level.get_node("StartingBallPosition").position)
 	$Paddle.reset(current_level.get_node("StartingPaddlePosition").position)
 	$HUD.reset()
@@ -114,6 +113,7 @@ func unpause_game_objects():
 	$Paddle.unpause()
 	
 	
-func mute_or_unmute_sound(mute):
+func mute_or_unmute_sound(muted):
 	var bus_idx = AudioServer.get_bus_index("Master")
-	AudioServer.set_bus_mute(bus_idx, mute) # or false
+	AudioServer.set_bus_mute(bus_idx, muted)
+	game_muted = muted

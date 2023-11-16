@@ -11,10 +11,11 @@ var initial_lives = 3
 var lives = initial_lives
 var active_blocks_count : set = on_blocks_count_setter
 
-var save_file = "user://user.save"
+var save_file = "user://breakot.save"
 
 func _ready():
 	var err = self.tree_exiting.connect(on_HUD_destroy)
+
 	if err:
 		print("Error when linking HUD delete behavior")
 		
@@ -55,6 +56,7 @@ func on_blocks_count_setter(new_count):
 
 func reset():
 	lives = initial_lives
+	new_highscore = false
 	
 	var blocks = get_tree().get_nodes_in_group("block")
 	self.active_blocks_count = blocks.size()
@@ -105,8 +107,10 @@ func increase_score(block_destroyed, points):
 		# When entered here for the first time for current level.
 		# So sound doesn't keep playing on each new score after having a new highscore.
 		if not new_highscore:
+			await get_tree().create_timer(0.5).timeout
 			$NewHighscoreSound.play()
 			new_highscore = true
+			show_message("NEW HIGHSCORE!!!", true)
 			
 		set_highscore(current_points)
 
