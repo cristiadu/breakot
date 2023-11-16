@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpuy31prlb1dx"]
+[gd_scene load_steps=9 format=3 uid="uid://dpuy31prlb1dx"]
 
 [ext_resource type="Texture2D" uid="uid://du87chwgf0bfm" path="res://assets/block_glass_1.png" id="1"]
 [ext_resource type="Script" path="res://blocks/CrackeableGlassBlock.gd" id="2"]
@@ -25,9 +25,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="3"]
-radius = 16.0
-height = 130.667
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_140qt"]
+radius = 0.1
+height = 128.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfwpb"]
+size = Vector2(31.55, 128)
 
 [node name="CrackeableGlassBlock" type="StaticBody2D" groups=["block"]]
 scale = Vector2(0.75, 0.75)
@@ -37,9 +40,20 @@ script = ExtResource("2")
 sprite_frames = SubResource("2")
 animation = &"cracked"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="UpperCornerCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-2.42532e-12, -15.89)
 rotation = 1.5708
-shape = SubResource("3")
+shape = SubResource("CapsuleShape2D_140qt")
+
+[node name="CenterCollision" type="CollisionShape2D" parent="."]
+position = Vector2(3.21571e-05, -0.000230908)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_hfwpb")
+
+[node name="BottomCornerCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15.89)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_140qt")
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4")
