@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 signal lost_life
 
-@export var initial_speed = 150.0
-@export var speed_increment = 75.0
+@export var initial_speed = 225.0
+@export var speed_increment = 25.0
+@export var speed_increment_interval = 6.0
 
 var speed: float = initial_speed
 var ball_paused: bool = true
@@ -11,6 +12,7 @@ var direction = Vector2(1, 0).rotated(PI/4)
 
 
 func _ready():
+	$BallSpeedTimer.wait_time = speed_increment_interval
 	var err = $BallSpeedTimer.timeout.connect(increase_ball_speed)
 	if err:
 		print("Error when creating ball speed timer.")

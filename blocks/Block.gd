@@ -5,15 +5,16 @@ class_name Block
 
 var random = RandomNumberGenerator.new()
 var colors = [
-	Color(1, 0, 0.5, 1),
-	Color(1, 0, 0, 1),
-	Color(0, 1, 0, 1),
-	Color(0, 0.25, 1, 1),
-	Color(1, 1, 0, 1),
-	Color(0, 1, 1, 1),
-	Color(1, 0, 1, 1),
-	Color(0.5, 0, 1, 1),
-	Color(0.5, 0.5, 1, 1),
+	Color(0.6, 1, 0, 1), # neon green
+	Color(0.7, 0, 1, 1), # magenta pink
+	Color(1, 0.7, 0, 1), # bright yellow
+	Color(0.4, 0.2, 1, 1), # violet
+	Color(1, 0, 0, 1), # red
+	Color(0.9, 0.6, 0, 1), # orange
+	Color(0.4, 0.6, 1, 1), # light blue
+	Color(0.7, 0.4, 0.4, 1), # light brown
+	Color(0, 0, 0.5, 1), # dark blue
+	Color(0.4, 0.1, 0.3, 1), # wine color
 ]
 
 signal hit
