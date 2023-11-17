@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal lost_life
 
-@export var initial_speed = 225.0
+@export var initial_speed = 200.0
 @export var speed_increment = 25.0
 @export var speed_increment_interval = 6.0
 

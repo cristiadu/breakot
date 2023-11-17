@@ -69,7 +69,7 @@ position = Vector2(837, 523)
 position = Vector2(645, 523)
 
 [node name="WeakGlassBlock2" parent="Blocks" instance=ExtResource("3")]
-position = Vector2(364, 326)
+position = Vector2(357, 326)
 
 [node name="CrackeableGlassBlock2" parent="Blocks" instance=ExtResource("2")]
 position = Vector2(396, 350)
@@ -93,13 +93,13 @@ position = Vector2(555, 398)
 position = Vector2(612, 350)
 
 [node name="WeakGlassBlock5" parent="Blocks" instance=ExtResource("3")]
-position = Vector2(644, 326)
+position = Vector2(645, 326)
 
 [node name="CrackeableGlassBlock5" parent="Blocks" instance=ExtResource("2")]
 position = Vector2(499, 251)
 
 [node name="StartingBallPosition" type="Marker2D" parent="."]
-position = Vector2(524, 290)
+position = Vector2(448, 486)
 
 [node name="StartingPaddlePosition" type="Marker2D" parent="."]
 position = Vector2(500, 700)

@@ -15,7 +15,6 @@ var save_file = "user://breakot.save"
 
 func _ready():
 	var err = self.tree_exiting.connect(on_HUD_destroy)
-
 	if err:
 		print("Error when linking HUD delete behavior")
 		

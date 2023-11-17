@@ -32,7 +32,7 @@ func _ready():
 func _process(_delta):
 	if $HUD/TitleBackground.visible and Input.is_action_just_pressed("ui_accept"):
 		# Game can be re-initalized only from title screen.
-		current_level_number = 1
+		current_level_number = 2
 		$StartGameSound.play()
 		start_level(current_level_number)
 	if Input.is_action_just_pressed("ui_cancel") and not $HUD/TitleBackground.visible:
@@ -58,11 +58,13 @@ func _process(_delta):
 func on_level_won():
 	pause_game_objects()
 	if current_level_number < total_levels:
+		$LevelWonSound.play()
 		$HUD.show_message("You Won This Level!\nLoading next one...")
 		current_level_number += 1
 		await get_tree().create_timer(3).timeout
 		start_level(current_level_number)
 	else:
+		$GameWonSound.play()
 		game_started = false
 		$HUD.show_message("You Won The Game!\nPress ESC to go back to title screen.", false)
 
@@ -70,10 +72,12 @@ func on_level_won():
 func on_level_lost():
 	game_started = false
 	pause_game_objects()
+	$GameLostSound.play()
 	$HUD.show_message("Game Over!\nPress ESC to go back to title screen.", false)
 
 
 func on_life_lost():
+	$LifeLostSound.play()
 	$Ball.pause()
 	$Ball.reset(current_level.get_node("StartingBallPosition").position)
 	$HUD.life_lost()

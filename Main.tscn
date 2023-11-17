@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c70od6a2cpp5h"]
+[gd_scene load_steps=15 format=3 uid="uid://c70od6a2cpp5h"]
 
 [ext_resource type="AudioStream" uid="uid://be3hfrpfpfa4y" path="res://assets/audio/start_game.wav" id="1"]
 [ext_resource type="Script" path="res://Main.gd" id="2"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b6nlhfre4rv3w" path="res://Paddle.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cp5auh6tptpuv" path="res://Ball.tscn" id="6"]
 [ext_resource type="AudioStream" uid="uid://seuh08dkamnc" path="res://assets/audio/cancel.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://da0uajrlgclc6" path="res://assets/audio/life_lost.wav" id="8_364yx"]
+[ext_resource type="AudioStream" uid="uid://dqlh0xi1dnsbb" path="res://assets/audio/level_won.wav" id="9_irfrh"]
+[ext_resource type="AudioStream" uid="uid://b73spnr83ef5u" path="res://assets/audio/game_lost.wav" id="10_u2h3h"]
 
 [sub_resource type="SegmentShape2D" id="1"]
 b = Vector2(0, 1024)
@@ -65,3 +68,19 @@ stream = ExtResource("1")
 
 [node name="CancelSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7")
+
+[node name="LifeLostSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_364yx")
+volume_db = -10.0
+
+[node name="LevelWonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_irfrh")
+volume_db = -10.0
+
+[node name="GameLostSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_u2h3h")
+volume_db = -10.0
+
+[node name="GameWonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_irfrh")
+volume_db = -10.0
