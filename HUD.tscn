@@ -166,6 +166,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 37
 text = "BREAKÔT"
+horizontal_alignment = 1
 
 [node name="InfoMessage" type="Label" parent="."]
 anchors_preset = 8
@@ -175,7 +176,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -123.0
 offset_top = -19.0
-offset_right = 277.0
+offset_right = 89.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -184,6 +185,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2")
 text = "Press \"ENTER\" to play!"
+horizontal_alignment = 1
 
 [node name="CurrentScore" type="Label" parent="."]
 anchors_preset = 5
