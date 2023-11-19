@@ -32,7 +32,7 @@ func _ready():
 func _process(_delta):
 	if $HUD/TitleBackground.visible and Input.is_action_just_pressed("ui_accept"):
 		# Game can be re-initalized only from title screen.
-		current_level_number = 5
+		current_level_number = 1
 		$StartGameSound.play()
 		start_level(current_level_number)
 	if Input.is_action_just_pressed("ui_cancel") and not $HUD/TitleBackground.visible:
