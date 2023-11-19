@@ -176,7 +176,7 @@ position = Vector2(240, 508)
 position = Vector2(369, 220)
 
 [node name="StartingBallPosition" type="Marker2D" parent="."]
-position = Vector2(336, 56)
+position = Vector2(590, 470)
 
 [node name="StartingPaddlePosition" type="Marker2D" parent="."]
-position = Vector2(500, 700)
+position = Vector2(514, 700)

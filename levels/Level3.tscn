@@ -274,4 +274,4 @@ position = Vector2(128, 484)
 position = Vector2(272, 528)
 
 [node name="StartingPaddlePosition" type="Marker2D" parent="."]
-position = Vector2(500, 700)
+position = Vector2(539, 700)
